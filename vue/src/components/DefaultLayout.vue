@@ -1,3 +1,4 @@
+
 <template>
     <!-- This example requires Tailwind CSS v2.0+ -->
 <!--
@@ -145,11 +146,48 @@
 
 </template>
 
-<script>
 
+
+<script>
+import {useStore} from 'vuex';
+import {computed} from 'vue';
+
+const navigation =[
+  {name: "Dashboard", to:{name: 'Dashboard'}},
+  {name: "surveys", to:{name: "Surveys"}},
+  
+];
+const userNavigation =[
+{name: "Your Profile", href: "#" },
+{name: "Settings", href: "#" },
+{name: "Sign out", href: "#" },
+]
 
 export default {
-    name: "Dashboard"
+  components: {
+    Disclosure,
+    DisclosureButton,
+    DisclosurePanel,
+    Menu,
+    MenuButton,
+    MenuItem,
+    MenuItems,
+    BellIcon,
+    MenuIcon,
+    XIcon,
+  },
+  
+  setup(){
+        const store = useStore();
+
+        return {
+          user: computed(() => store.state.user.data),
+          navigation,
+        };
+
+
+
+      },
         
     }
 
