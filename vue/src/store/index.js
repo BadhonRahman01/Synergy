@@ -2,6 +2,11 @@ import { createStore } from "vuex";
 import axiosClient from '../axios';
 
 
+
+const tmpSurveys =[
+    
+];
+
 const store = createStore({
   state: {
     user: {
@@ -26,6 +31,13 @@ const store = createStore({
                 return data;
               })
         },
+        logout({commit}) {
+          return axiosClient.post('/logout')
+            .then(response =>{
+              commit('logout')
+              return response;
+            })
+        }
   },
   mutations: {
     logout: (state) => {
